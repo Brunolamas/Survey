@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Survey Results</title>
+    <style>
+        #result {
+            font-size:64px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Survey Results</h2>
+    <div id="result"></div>
+    <div id="result" style="font-size: 54px;"></div>
+
+
+    <script>
+        function displayResults() {
+            const results = JSON.parse(localStorage.getItem('surveyResults'));
+            let resultCounts = {"A": 0, "B": 0, "C": 0, "D": 0};
+
+            // Count the answers
+            Object.values(results).forEach(value => {
+                resultCounts[value]++;
+            });
+
+            let majorityAnswer = Object.keys(resultCounts).reduce((a, b) => resultCounts[a] > resultCounts[b] ? a : b);
+            let resultText = "";
+
+            if (resultCounts[majorityAnswer] >= 3) {
+                switch (majorityAnswer) {
+                    case 'A':
+                        resultText = "Mostly A’s: The CloudLuxe Memory - Your preference for plushness and a mattress that adapts to your body temperature aligns with the luxurious feel of The CloudLuxe Memory.";
+                        break;
+                    case 'B':
+                        resultText = "Mostly B’s: The Firm Support - Given your need for firm support, especially as a back sleeper, The Firm Support is ideal for your preferences.";
+                        break;
+                    case 'C':
+                        resultText = "Mostly C’s: The Memory Comfort - Your desire for a mattress that offers both softness and support without too much sink suggests that The Memory Comfort would suit you best.";
+                        break;
+                    case 'D':
+                        resultText = "Mostly D’s: The Layered Bliss - Your preference for a balanced mattress with distinct layers and temperature neutrality indicates that The Layered Bliss would provide the blissful sleep experience you’re looking for.";
+                        break;
+                }
+            } else {
+                resultText = "Your responses are quite varied! It seems like you might have diverse needs that could be met by exploring a combination of features.";
+            }
+
+            document.getElementById('result').innerText = resultText;
+        }
+
+        displayResults();
+    </script>
+</body>
+</html>
