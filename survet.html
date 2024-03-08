@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mattress Survey</title>
+    <style>
+        fieldset {
+            margin-bottom: 50px;
+        }
+        button {
+            padding: 20px 30px;
+            font-size: 32px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h2>Mattress Preference Survey</h2>
+    <form id="surveyForm">
+
+        <fieldset>
+            <legend>1. How do you prefer your mattress to feel?</legend>
+            <input type="radio" id="q1-a" name="q1" value="A"><label for="q1-a">A. Firm with minimal give</label><br>
+            <input type="radio" id="q1-b" name="q1" value="B"><label for="q1-b">B. Soft yet supportive</label><br>
+            <input type="radio" id="q1-c" name="q1" value="C"><label for="q1-c">C. Balanced with distinct layers of comfort</label><br>
+        </fieldset>
+
+        <fieldset>
+            <legend>2. What is your primary concern when choosing a mattress?</legend>
+            <input type="radio" id="q2-a" name="q2" value="A"><label for="q2-a">A. Back support and firmness</label><br>
+            <input type="radio" id="q2-b" name="q2" value="B"><label for="q2-b">B. Comfort without feeling stuck</label><br>
+            <input type="radio" id="q2-c" name="q2" value="C"><label for="q2-c">C. Comfort with a bit of bounce</label><br>
+        </fieldset>
+        
+        <fieldset>
+            <legend>3. How important is memory foam to you?</legend>
+            <input type="radio" id="q3-a" name="q3" value="A"><label for="q3-a">A. Not important, I prefer firmness without too much sink</label><br>
+            <input type="radio" id="q3-b" name="q3" value="B"><label for="q3-b">B. Somewhat important, I like a moderate memory foam feel</label><br>
+            <input type="radio" id="q3-c" name="q3" value="C"><label for="q3-c">C. Important, but I want it balanced with other materials</label><br>
+        </fieldset>
+
+        <fieldset>
+            <legend>4. What is your sleeping position?</legend>
+            <input type="radio" id="q4-a" name="q4" value="A"><label for="q4-a">A. Back sleeper, I need firm support</label><br>
+            <input type="radio" id="q4-b" name="q4" value="B"><label for="q4-b">B. Combination sleeper, I move around and need adaptable support</label><br>
+            <input type="radio" id="q4-c" name="q4" value="C"><label for="q4-c">C. Stomach sleeper, I need a surface that keeps me level</label><br>
+        </fieldset>
+
+        <fieldset>
+            <legend>5. Do you tend to sleep hot or cold</legend>
+            <input type="radio" id="q5-a" name="q5" value="A"><label for="q5-a">A. I prefer warmth and don’t mind a bit of heat retention</label><br>
+            <input type="radio" id="q5-b" name="q5" value="B"><label for="q5-b">B. I like a mattress that adapts to my body temperature</label><br>
+            <input type="radio" id="q5-c" name="q5" value="C"><label for="q5-c">C. I’m looking for a mattress that offers temperature neutrality</label><br>
+        </fieldset>
+        <button type="button" onclick="submitForm()">Submit</button>
+    </form>
+    <div id="result"></div>
+
+    <script>
+        function submitForm() {
+            const answers = document.querySelectorAll('input[type="radio"]:checked');
+            const results = {};
+            
+            answers.forEach(answer => {
+                results[answer.name] = answer.value;
+            });
+            
+            localStorage.setItem('surveyResults', JSON.stringify(results));
+            window.location.href = 'results.html'; // Redirect to results page
+        }
+    </script>
+        
+</body>
+</html>
